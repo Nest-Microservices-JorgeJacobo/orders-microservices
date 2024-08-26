@@ -18,3 +18,4 @@ availableSecrets:
       env: 'DATABASE_URL'
 options:
   logging: CLOUD_LOGGING_ONLY
+serviceAccount: [120878860277-compute@developer.gserviceaccount.com]
