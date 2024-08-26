@@ -1,20 +1,22 @@
 steps:
-  - name: "gcr.io/cloud-builders/docker"
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args:
+      - -c
+      - |
+        docker build -t us-east4-docker.pkg.dev/nest-tienda-microservices/image-registry/orders-ms -f dockerfile.prod --platform=linux/amd64 --build-arg ORDERS_MS_DATABASE_URL=$$DATABASE_URL .
+    secretEnv: ['DATABASE_URL']
+
+  - name: 'gcr.io/cloud-builders/docker'
     args:
       [
-        "build",
-        "-t",
-        "us-east4-docker.pkg.dev/nest-tienda-microservices/image-registry/orders-ms",
-        "-f",
-        "dockerfile.prod",
-        "--platform=linux/amd64",
-        ".",
+        'push',
+        'us-east4-docker.pkg.dev/nest-tienda-microservices/image-registry/orders-ms',
       ]
-  - name: "gcr.io/cloud-builders/docker"
-    args:
-      [
-        "push",
-        "us-east4-docker.pkg.dev/nest-tienda-microservices/image-registry/orders-ms",
-      ]
-options:
-  logging: CLOUD_LOGGING_ONLY
+
+  availableSecrets:
+    secretManager:
+    - versionName: projects/120878860277/secrets/ORDERS_MS_DATABASE_URL/versions/1
+      env: 'DATABASE_URL'
+  options:
+    logging: CLOUD_LOGGING_ONLY
