@@ -16,3 +16,5 @@ availableSecrets:
   secretManager:
     - versionName: projects/120878860277/secrets/DATABASE_URL/versions/1
       env: 'DATABASE_URL'
+options:
+  logging: CLOUD_LOGGING_ONLY
