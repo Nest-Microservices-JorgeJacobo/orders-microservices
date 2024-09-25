@@ -14,9 +14,9 @@ steps:
       ]
 availableSecrets:
   secretManager:
-    - versionName: projects/120878860277/secrets/ORDERS_MS_DATABASE_URL/versions/1
+    - versionName: projects/600147795427/secrets/orders_database_url/versions/1
       env: 'DATABASE_URL'
 options:
   logging: CLOUD_LOGGING_ONLY
   default_logs_bucket_behavior: REGIONAL_USER_OWNED_BUCKET
-serviceAccount: 120878860277-compute@developer.gserviceaccount.com
+serviceAccount: 600147795427-compute@developer.gserviceaccount.com
